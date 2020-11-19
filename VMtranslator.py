@@ -112,19 +112,11 @@ def pop(mem_segment, num):
     s = '@{0}\n' \
         '{1}' \
         '@SP\n' \
-        'A=M\n' \
-        'M=D\n' \
-        '@SP\n' \
         'M=M-1\n' \
         'A=M\n' \
-        'D=M\n' \
-        '@SP\n' \
-        'M=M+1\n' \
-        'A=M\n' \
-        'A=M\n' \
-        'M=D\n' \
-        '@SP\n' \
-        'M=M-1'.format(num, label)
+        'D=D+M\n' \
+        'A=D-M\n' \
+        'M=D-A\n'.format(num, label)
     return s
 
 
