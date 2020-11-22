@@ -78,11 +78,13 @@ def push(mem_segment, num):
         else:
             if mem_segment == 'temp':
                 num = int(num) + 5
-                label = 'D=A\n'
+                label = 'D=M\n'
+
             else:
                 label = 'D=A\n' \
                         '@{0}\n' \
-                        'D=D+M\n'.format(segments.get(mem_segment))
+                        'A=D+M\n' \
+                        'D=M\n'.format(segments.get(mem_segment))
 
     s = '@{0}\n' \
         '{1}'  \
@@ -116,7 +118,7 @@ def pop(mem_segment, num):
         'A=M\n' \
         'D=D+M\n' \
         'A=D-M\n' \
-        'M=D-A\n'.format(num, label)
+        'M=D-A'.format(num, label)
     return s
 
 
